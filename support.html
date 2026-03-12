@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support — DeepTalk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F0F1A;
+            --bg-card: #1A1A2E;
+            --text: #E8E8F0;
+            --text-secondary: #A0A0B8;
+            --primary: #6C5CE7;
+            --accent: #A29BFE;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 32px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .back-link:hover { color: var(--text); }
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 18px;
+            margin-bottom: 48px;
+        }
+        h2 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-top: 48px;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+        p, li {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        ul { padding-left: 24px; }
+        li { margin-bottom: 8px; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .faq-item {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .faq-item h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+        .faq-item p {
+            margin-bottom: 0;
+            font-size: 15px;
+        }
+        .contact-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin-top: 48px;
+            border: 1px solid rgba(108,92,231,0.2);
+        }
+        .contact-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+        .contact-card .email {
+            display: inline-block;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #6C5CE7, #A29BFE);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-top: 16px;
+            text-decoration: none;
+        }
+        .contact-card .email:hover {
+            opacity: 0.9;
+        }
+
+        .how-to {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .how-to h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .step {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 8px;
+            align-items: flex-start;
+        }
+        .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 28px;
+            height: 28px;
+            background: var(--primary);
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+        }
+        .step p { margin-bottom: 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Back to DeepTalk</a>
+        <h1>Support</h1>
+        <p class="subtitle">Find answers to common questions or get in touch with us.</p>
+
+        <h2>How to Export Chat Files</h2>
+
+        <div class="how-to">
+            <h3>WhatsApp</h3>
+            <div class="step"><span class="step-num">1</span><p>Open the chat you want to export</p></div>
+            <div class="step"><span class="step-num">2</span><p>Tap the chat name at the top</p></div>
+            <div class="step"><span class="step-num">3</span><p>Scroll down and tap <strong>Export Chat</strong></p></div>
+            <div class="step"><span class="step-num">4</span><p>Select <strong>Without Media</strong></p></div>
+            <div class="step"><span class="step-num">5</span><p>Share the .txt file to DeepTalk</p></div>
+        </div>
+
+        <div class="how-to">
+            <h3>KakaoTalk</h3>
+            <div class="step"><span class="step-num">1</span><p>Open the chat room</p></div>
+            <div class="step"><span class="step-num">2</span><p>Tap the menu (hamburger icon) at the top right</p></div>
+            <div class="step"><span class="step-num">3</span><p>Tap the settings gear icon</p></div>
+            <div class="step"><span class="step-num">4</span><p>Select <strong>Export Chat</strong></p></div>
+            <div class="step"><span class="step-num">5</span><p>Share the exported file to DeepTalk</p></div>
+        </div>
+
+        <div class="how-to">
+            <h3>LINE</h3>
+            <div class="step"><span class="step-num">1</span><p>Open the chat room</p></div>
+            <div class="step"><span class="step-num">2</span><p>Tap the menu icon at the top right</p></div>
+            <div class="step"><span class="step-num">3</span><p>Tap <strong>Other settings</strong></p></div>
+            <div class="step"><span class="step-num">4</span><p>Select <strong>Export chat history</strong></p></div>
+            <div class="step"><span class="step-num">5</span><p>Share the .txt file to DeepTalk</p></div>
+        </div>
+
+        <h2>FAQ</h2>
+
+        <div class="faq-item">
+            <h3>Is my chat data safe?</h3>
+            <p>Yes. All analysis happens 100% on your device. Your chat data is never uploaded to any server. We cannot see your messages even if we wanted to.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>What happens to my data when I delete the app?</h3>
+            <p>All imported chat data and analysis results are permanently deleted when you uninstall DeepTalk. Nothing remains on your device or on any server.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Why does the app need network access?</h3>
+            <p>Network access is used only for anonymous usage analytics (TelemetryDeck) and crash reporting (Firebase Crashlytics). No chat data or personal information is ever transmitted.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>How many messages can DeepTalk handle?</h3>
+            <p>DeepTalk is optimized for large chats and can handle 100,000+ messages efficiently using streaming parsers and batch processing.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Which file formats are supported?</h3>
+            <p>DeepTalk supports .txt and .zip files exported from WhatsApp, KakaoTalk, and LINE. The messenger format is automatically detected.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Does the AI Chat Insight require internet?</h3>
+            <p>No. The AI runs entirely on your device using a local language model. No internet connection is needed for any analysis feature.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Can I analyze chats from multiple messengers?</h3>
+            <p>Yes. You can import chats from WhatsApp, KakaoTalk, and LINE independently. Each import creates a separate analysis.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>The app is slow during analysis. Is this normal?</h3>
+            <p>Initial analysis of large chat files may take a moment since all processing runs on-device. Once complete, all analytics cards load instantly.</p>
+        </div>
+
+        <div class="contact-card">
+            <h3>Still need help?</h3>
+            <p>We'd love to hear from you. Reach out and we'll get back to you as soon as possible.</p>
+            <a href="mailto:d2h.deeptalk@gmail.com" class="email">d2h.deeptalk@gmail.com</a>
+        </div>
+    </div>
+</body>
+</html>
