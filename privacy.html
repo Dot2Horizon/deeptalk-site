@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy — DeepTalk</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #0F0F1A;
@@ -16,38 +16,33 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', 'Noto Sans KR', 'Noto Sans JP', -apple-system, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.8;
         }
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 80px 24px;
+        .container { max-width: 720px; margin: 0 auto; padding: 80px 24px; }
+        .lang-switcher {
+            position: fixed; top: 20px; right: 20px; z-index: 1000;
+            display: flex; gap: 4px;
+            background: rgba(26,26,46,0.9); backdrop-filter: blur(12px);
+            border-radius: 12px; padding: 4px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        h1 {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 8px;
+        .lang-btn {
+            padding: 6px 12px; border: none; background: transparent;
+            color: var(--text-secondary); font-size: 13px; font-weight: 500;
+            cursor: pointer; border-radius: 8px; transition: all 0.2s;
         }
-        .updated {
-            color: var(--text-secondary);
-            font-size: 14px;
-            margin-bottom: 48px;
-        }
+        .lang-btn:hover { color: var(--text); }
+        .lang-btn.active { background: var(--primary); color: white; }
+        h1 { font-size: 36px; font-weight: 700; margin-bottom: 8px; }
+        .updated { color: var(--text-secondary); font-size: 14px; margin-bottom: 48px; }
         h2 {
-            font-size: 22px;
-            font-weight: 600;
-            margin-top: 48px;
-            margin-bottom: 16px;
-            color: var(--accent);
+            font-size: 22px; font-weight: 600;
+            margin-top: 48px; margin-bottom: 16px; color: var(--accent);
         }
-        p, li {
-            font-size: 16px;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-        }
+        p, li { font-size: 16px; color: var(--text-secondary); margin-bottom: 12px; }
         ul { padding-left: 24px; }
         li { margin-bottom: 8px; }
         a { color: var(--accent); text-decoration: none; }
@@ -55,151 +50,414 @@
         .highlight {
             background: var(--bg-card);
             border-left: 3px solid var(--primary);
-            padding: 20px 24px;
-            border-radius: 0 12px 12px 0;
-            margin: 24px 0;
+            padding: 20px 24px; border-radius: 0 12px 12px 0; margin: 24px 0;
         }
         .highlight p { margin-bottom: 0; color: var(--text); }
         .back-link {
-            display: inline-block;
-            margin-bottom: 32px;
-            color: var(--text-secondary);
-            font-size: 14px;
+            display: inline-block; margin-bottom: 32px;
+            color: var(--text-secondary); font-size: 14px;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 16px 0 24px;
-        }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; }
         th, td {
-            text-align: left;
-            padding: 12px 16px;
+            text-align: left; padding: 12px 16px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            font-size: 15px;
-            color: var(--text-secondary);
+            font-size: 15px; color: var(--text-secondary);
         }
-        th {
-            color: var(--text);
-            font-weight: 600;
-            background: var(--bg-card);
+        th { color: var(--text); font-weight: 600; background: var(--bg-card); }
+        @media (max-width: 640px) {
+            .lang-switcher { top: 12px; right: 12px; }
+            .lang-btn { padding: 5px 8px; font-size: 12px; }
         }
     </style>
 </head>
 <body>
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('ko')">KR</button>
+        <button class="lang-btn" onclick="setLang('ja')">JP</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" onclick="setLang('pt')">BR</button>
+    </div>
+
     <div class="container">
-        <a href="index.html" class="back-link">&larr; Back to DeepTalk</a>
-        <h1>Privacy Policy</h1>
-        <p class="updated">Last Updated: March 2026</p>
+        <a href="index.html" class="back-link">&larr; <span data-i18n="back"></span></a>
+        <h1 data-i18n="title"></h1>
+        <p class="updated" data-i18n="updated"></p>
 
         <div class="highlight">
-            <p>DeepTalk is a privacy-first app. All chat analysis is performed 100% on your device. We do not collect, store, or transmit your chat data to any external server.</p>
+            <p data-i18n="overview"></p>
         </div>
 
-        <h2>1. Data We Do NOT Collect</h2>
-        <p>DeepTalk does not collect any of the following:</p>
+        <h2 data-i18n="h_not_collect"></h2>
+        <p data-i18n="not_collect_intro"></p>
         <ul>
-            <li>Chat messages, conversation history, or message content</li>
-            <li>Contact information or address book data</li>
-            <li>Photos, media files, or attachments</li>
-            <li>Location or GPS data</li>
-            <li>Personal identifiers (name, email, phone number)</li>
-            <li>Device identifiers (IDFA, IDFV)</li>
-            <li>Browsing history or search queries</li>
+            <li data-i18n="nc_chat"></li>
+            <li data-i18n="nc_contact"></li>
+            <li data-i18n="nc_media"></li>
+            <li data-i18n="nc_location"></li>
+            <li data-i18n="nc_id"></li>
+            <li data-i18n="nc_device"></li>
+            <li data-i18n="nc_browsing"></li>
         </ul>
 
-        <h2>2. Data We Collect</h2>
-        <p>We collect minimal, anonymous data solely to improve app quality:</p>
-
+        <h2 data-i18n="h_collect"></h2>
+        <p data-i18n="collect_intro"></p>
         <table>
-            <tr>
-                <th>Data Type</th>
-                <th>Purpose</th>
-                <th>Linked to You?</th>
-            </tr>
-            <tr>
-                <td>Usage Analytics</td>
-                <td>App improvement</td>
-                <td>No (anonymous)</td>
-            </tr>
-            <tr>
-                <td>Crash Reports</td>
-                <td>Bug fixing</td>
-                <td>No (anonymous)</td>
-            </tr>
+            <tr><th data-i18n="th_type"></th><th data-i18n="th_purpose"></th><th data-i18n="th_linked"></th></tr>
+            <tr><td data-i18n="td_usage"></td><td data-i18n="td_usage_purpose"></td><td data-i18n="td_no_anon"></td></tr>
+            <tr><td data-i18n="td_crash"></td><td data-i18n="td_crash_purpose"></td><td data-i18n="td_no_anon"></td></tr>
         </table>
 
-        <h2>3. Analytics Services</h2>
-        <p><strong>TelemetryDeck</strong> — We use TelemetryDeck for anonymous usage analytics. TelemetryDeck is designed to be privacy-first and does not use cookies or collect personal data. Events tracked include: app launches, feature usage (screen visits), and import success/failure rates. No personal identifiers are included.</p>
-        <p>TelemetryDeck Privacy Policy: <a href="https://telemetrydeck.com/privacy" target="_blank">telemetrydeck.com/privacy</a></p>
+        <h2 data-i18n="h_analytics"></h2>
+        <p data-i18n="analytics_td"></p>
+        <p>TelemetryDeck Privacy: <a href="https://telemetrydeck.com/privacy" target="_blank">telemetrydeck.com/privacy</a></p>
+        <p data-i18n="analytics_fb"></p>
+        <p>Firebase Privacy: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a></p>
 
-        <p><strong>Firebase Crashlytics</strong> — We use Firebase Crashlytics to collect crash reports. These reports include device model, OS version, and crash stack traces. No personal data or chat content is included.</p>
-        <p>Firebase Privacy Policy: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a></p>
-
-        <h2>4. On-Device Processing</h2>
-        <p>All analysis features in DeepTalk run entirely on your device:</p>
+        <h2 data-i18n="h_ondevice"></h2>
+        <p data-i18n="ondevice_intro"></p>
         <ul>
-            <li><strong>Chat Parsing</strong> — Message files are parsed locally</li>
-            <li><strong>Analytics</strong> — All 10 analytics cards compute on-device</li>
-            <li><strong>AI Chat Insight</strong> — Powered by an on-device LLM (large language model) that runs locally using your device's processor</li>
-            <li><strong>Wrapped</strong> — Summary reports are generated on-device</li>
-            <li><strong>Semantic Search</strong> — Vector embeddings are computed and stored locally</li>
+            <li data-i18n="od_parsing"></li>
+            <li data-i18n="od_analytics"></li>
+            <li data-i18n="od_ai"></li>
+            <li data-i18n="od_wrapped"></li>
+            <li data-i18n="od_search"></li>
         </ul>
-        <p>Your chat data never leaves your iPhone. There are no cloud APIs, no server-side processing, and no data uploads.</p>
+        <p data-i18n="ondevice_outro"></p>
 
-        <h2>5. Data Storage</h2>
-        <p>Imported chat data is stored in the app's sandboxed container on your device:</p>
+        <h2 data-i18n="h_storage"></h2>
+        <p data-i18n="storage_intro"></p>
         <ul>
-            <li>Protected by iOS file-level encryption at rest</li>
-            <li>Accessible only by the DeepTalk app</li>
-            <li>Completely deleted when you uninstall the app</li>
-            <li>You can delete individual analyses at any time within the app</li>
-        </ul>
-
-        <h2>6. Network Usage</h2>
-        <p>DeepTalk's network access is strictly limited to:</p>
-        <ul>
-            <li>Sending anonymous usage analytics to TelemetryDeck</li>
-            <li>Sending crash reports to Firebase Crashlytics</li>
-        </ul>
-        <p>No chat data, personal information, or analysis results are ever transmitted over the network.</p>
-
-        <h2>7. Third-Party SDKs</h2>
-        <table>
-            <tr>
-                <th>SDK</th>
-                <th>Purpose</th>
-                <th>Data Shared</th>
-            </tr>
-            <tr>
-                <td>TelemetryDeck</td>
-                <td>Anonymous analytics</td>
-                <td>Usage events only</td>
-            </tr>
-            <tr>
-                <td>Firebase Crashlytics</td>
-                <td>Crash reporting</td>
-                <td>Crash logs only</td>
-            </tr>
-        </table>
-        <p>Neither service receives any chat data, personal information, or analysis results.</p>
-
-        <h2>8. Children's Privacy</h2>
-        <p>DeepTalk does not knowingly collect personal data from children under the age of 13. The app does not require account creation or collect any personal identifiers.</p>
-
-        <h2>9. Your Rights</h2>
-        <p>Since DeepTalk does not collect personal data:</p>
-        <ul>
-            <li>There is no personal data to access, correct, or delete on our servers</li>
-            <li>You can delete all local data by uninstalling the app</li>
-            <li>You can delete individual analyses within the app at any time</li>
+            <li data-i18n="st_encrypted"></li>
+            <li data-i18n="st_access"></li>
+            <li data-i18n="st_delete_app"></li>
+            <li data-i18n="st_delete_ind"></li>
         </ul>
 
-        <h2>10. Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated "Last Updated" date. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+        <h2 data-i18n="h_network"></h2>
+        <p data-i18n="network_intro"></p>
+        <ul>
+            <li data-i18n="net_td"></li>
+            <li data-i18n="net_fb"></li>
+        </ul>
+        <p data-i18n="network_outro"></p>
 
-        <h2>11. Contact Us</h2>
-        <p>If you have questions about this Privacy Policy, please contact us at:</p>
+        <h2 data-i18n="h_children"></h2>
+        <p data-i18n="children_text"></p>
+
+        <h2 data-i18n="h_rights"></h2>
+        <p data-i18n="rights_intro"></p>
+        <ul>
+            <li data-i18n="rights_no_data"></li>
+            <li data-i18n="rights_uninstall"></li>
+            <li data-i18n="rights_delete"></li>
+        </ul>
+
+        <h2 data-i18n="h_changes"></h2>
+        <p data-i18n="changes_text"></p>
+
+        <h2 data-i18n="h_contact"></h2>
+        <p data-i18n="contact_intro"></p>
         <p><a href="mailto:contact@dot2horizon.com">contact@dot2horizon.com</a></p>
     </div>
+
+    <script>
+    const translations = {
+        en: {
+            back: "Back to DeepTalk",
+            title: "Privacy Policy",
+            updated: "Last Updated: March 2026",
+            overview: "DeepTalk is a privacy-first app. All chat analysis is performed 100% on your device. We do not collect, store, or transmit your chat data to any external server.",
+            h_not_collect: "1. Data We Do NOT Collect",
+            not_collect_intro: "DeepTalk does not collect any of the following:",
+            nc_chat: "Chat messages, conversation history, or message content",
+            nc_contact: "Contact information or address book data",
+            nc_media: "Photos, media files, or attachments",
+            nc_location: "Location or GPS data",
+            nc_id: "Personal identifiers (name, email, phone number)",
+            nc_device: "Device identifiers (IDFA, IDFV)",
+            nc_browsing: "Browsing history or search queries",
+            h_collect: "2. Data We Collect",
+            collect_intro: "We collect minimal, anonymous data solely to improve app quality:",
+            th_type: "Data Type", th_purpose: "Purpose", th_linked: "Linked to You?",
+            td_usage: "Usage Analytics", td_usage_purpose: "App improvement",
+            td_crash: "Crash Reports", td_crash_purpose: "Bug fixing",
+            td_no_anon: "No (anonymous)",
+            h_analytics: "3. Analytics Services",
+            analytics_td: "TelemetryDeck \u2014 We use TelemetryDeck for anonymous usage analytics. TelemetryDeck is privacy-first and does not use cookies or collect personal data. Events tracked include app launches, feature usage, and import success/failure rates.",
+            analytics_fb: "Firebase Crashlytics \u2014 We use Firebase Crashlytics for crash reports. These include device model, OS version, and crash stack traces. No personal data or chat content is included.",
+            h_ondevice: "4. On-Device Processing",
+            ondevice_intro: "All analysis features in DeepTalk run entirely on your device:",
+            od_parsing: "Chat Parsing \u2014 Message files are parsed locally",
+            od_analytics: "Analytics \u2014 All 10 analytics cards compute on-device",
+            od_ai: "AI Chat Insight \u2014 Powered by an on-device LLM",
+            od_wrapped: "Wrapped \u2014 Summary reports are generated on-device",
+            od_search: "Semantic Search \u2014 Vector embeddings are computed locally",
+            ondevice_outro: "Your chat data never leaves your iPhone. There are no cloud APIs, no server-side processing, and no data uploads.",
+            h_storage: "5. Data Storage",
+            storage_intro: "Imported chat data is stored in the app\u2019s sandboxed container on your device:",
+            st_encrypted: "Protected by iOS file-level encryption at rest",
+            st_access: "Accessible only by the DeepTalk app",
+            st_delete_app: "Completely deleted when you uninstall the app",
+            st_delete_ind: "You can delete individual analyses at any time within the app",
+            h_network: "6. Network Usage",
+            network_intro: "DeepTalk\u2019s network access is strictly limited to:",
+            net_td: "Sending anonymous usage analytics to TelemetryDeck",
+            net_fb: "Sending crash reports to Firebase Crashlytics",
+            network_outro: "No chat data, personal information, or analysis results are ever transmitted over the network.",
+            h_children: "7. Children\u2019s Privacy",
+            children_text: "DeepTalk does not knowingly collect personal data from children under the age of 13. The app does not require account creation or collect any personal identifiers.",
+            h_rights: "8. Your Rights",
+            rights_intro: "Since DeepTalk does not collect personal data:",
+            rights_no_data: "There is no personal data to access, correct, or delete on our servers",
+            rights_uninstall: "You can delete all local data by uninstalling the app",
+            rights_delete: "You can delete individual analyses within the app at any time",
+            h_changes: "9. Changes to This Policy",
+            changes_text: "We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated \u201cLast Updated\u201d date.",
+            h_contact: "10. Contact Us",
+            contact_intro: "If you have questions about this Privacy Policy, please contact us at:"
+        },
+        ko: {
+            back: "DeepTalk\uc73c\ub85c \ub3cc\uc544\uac00\uae30",
+            title: "\uac1c\uc778\uc815\ubcf4 \ucc98\ub9ac\ubc29\uce68",
+            updated: "\ucd5c\uc885 \uc5c5\ub370\uc774\ud2b8: 2026\ub144 3\uc6d4",
+            overview: "DeepTalk\uc740 \ud504\ub77c\uc774\ubc84\uc2dc \uc6b0\uc120 \uc571\uc785\ub2c8\ub2e4. \ubaa8\ub4e0 \ucc44\ud305 \ubd84\uc11d\uc740 100% \uae30\uae30 \ub0b4\uc5d0\uc11c \uc218\ud589\ub429\ub2c8\ub2e4. \ucc44\ud305 \ub370\uc774\ud130\ub97c \uc218\uc9d1, \uc800\uc7a5 \ub610\ub294 \uc678\ubd80 \uc11c\ubc84\ub85c \uc804\uc1a1\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.",
+            h_not_collect: "1. \uc218\uc9d1\ud558\uc9c0 \uc54a\ub294 \ub370\uc774\ud130",
+            not_collect_intro: "DeepTalk\uc740 \ub2e4\uc74c \ub370\uc774\ud130\ub97c \uc218\uc9d1\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4:",
+            nc_chat: "\ucc44\ud305 \uba54\uc2dc\uc9c0, \ub300\ud654 \ub0b4\uc5ed \ub610\ub294 \uba54\uc2dc\uc9c0 \ub0b4\uc6a9",
+            nc_contact: "\uc5f0\ub77d\ucc98 \uc815\ubcf4 \ub610\ub294 \uc8fc\uc18c\ub85d \ub370\uc774\ud130",
+            nc_media: "\uc0ac\uc9c4, \ubbf8\ub514\uc5b4 \ud30c\uc77c \ub610\ub294 \ucca8\ubd80\ud30c\uc77c",
+            nc_location: "\uc704\uce58 \ub610\ub294 GPS \ub370\uc774\ud130",
+            nc_id: "\uac1c\uc778 \uc2dd\ubcc4\uc790 (\uc774\ub984, \uc774\uba54\uc77c, \uc804\ud654\ubc88\ud638)",
+            nc_device: "\uae30\uae30 \uc2dd\ubcc4\uc790 (IDFA, IDFV)",
+            nc_browsing: "\ube0c\ub77c\uc6b0\uc9d5 \uae30\ub85d \ub610\ub294 \uac80\uc0c9 \ucffc\ub9ac",
+            h_collect: "2. \uc218\uc9d1\ud558\ub294 \ub370\uc774\ud130",
+            collect_intro: "\uc571 \ud488\uc9c8 \uac1c\uc120\uc744 \uc704\ud574 \ucd5c\uc18c\ud55c\uc758 \uc775\uba85 \ub370\uc774\ud130\ub9cc \uc218\uc9d1\ud569\ub2c8\ub2e4:",
+            th_type: "\ub370\uc774\ud130 \uc720\ud615", th_purpose: "\ubaa9\uc801", th_linked: "\uc0ac\uc6a9\uc790 \uc5f0\uacb0?",
+            td_usage: "\uc0ac\uc6a9 \ubd84\uc11d", td_usage_purpose: "\uc571 \uac1c\uc120",
+            td_crash: "\ud06c\ub798\uc2dc \ub9ac\ud3ec\ud2b8", td_crash_purpose: "\ubc84\uadf8 \uc218\uc815",
+            td_no_anon: "\uc544\ub2c8\uc624 (\uc775\uba85)",
+            h_analytics: "3. \ubd84\uc11d \uc11c\ube44\uc2a4",
+            analytics_td: "TelemetryDeck \u2014 \uc775\uba85 \uc0ac\uc6a9 \ubd84\uc11d\uc744 \uc704\ud574 TelemetryDeck\uc744 \uc0ac\uc6a9\ud569\ub2c8\ub2e4. TelemetryDeck\uc740 \ud504\ub77c\uc774\ubc84\uc2dc \uc6b0\uc120\uc774\uba70 \ucfe0\ud0a4\ub97c \uc0ac\uc6a9\ud558\uac70\ub098 \uac1c\uc778 \ub370\uc774\ud130\ub97c \uc218\uc9d1\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.",
+            analytics_fb: "Firebase Crashlytics \u2014 \ud06c\ub798\uc2dc \ub9ac\ud3ec\ud2b8\ub97c \uc704\ud574 Firebase Crashlytics\ub97c \uc0ac\uc6a9\ud569\ub2c8\ub2e4. \uae30\uae30 \ubaa8\ub378, OS \ubc84\uc804 \ubc0f \ud06c\ub798\uc2dc \uc2a4\ud0dd \ud2b8\ub808\uc774\uc2a4\ub9cc \ud3ec\ud568\ub429\ub2c8\ub2e4.",
+            h_ondevice: "4. \uc628\ub514\ubc14\uc774\uc2a4 \ucc98\ub9ac",
+            ondevice_intro: "DeepTalk\uc758 \ubaa8\ub4e0 \ubd84\uc11d \uae30\ub2a5\uc740 \uae30\uae30 \ub0b4\uc5d0\uc11c \uc2e4\ud589\ub429\ub2c8\ub2e4:",
+            od_parsing: "\ucc44\ud305 \ud30c\uc2f1 \u2014 \uba54\uc2dc\uc9c0 \ud30c\uc77c\uc774 \ub85c\uceec\uc5d0\uc11c \ud30c\uc2f1\ub429\ub2c8\ub2e4",
+            od_analytics: "\ubd84\uc11d \u2014 10\uac00\uc9c0 \ubd84\uc11d \uce74\ub4dc\uac00 \uae30\uae30 \ub0b4\uc5d0\uc11c \uacc4\uc0b0\ub429\ub2c8\ub2e4",
+            od_ai: "AI \ucc44\ud305 \uc778\uc0ac\uc774\ud2b8 \u2014 \uc628\ub514\ubc14\uc774\uc2a4 LLM\uc73c\ub85c \uad6c\ub3d9",
+            od_wrapped: "Wrapped \u2014 \uc694\uc57d \ub9ac\ud3ec\ud2b8\uac00 \uae30\uae30 \ub0b4\uc5d0\uc11c \uc0dd\uc131\ub429\ub2c8\ub2e4",
+            od_search: "\uc2dc\ub9e8\ud2f1 \uac80\uc0c9 \u2014 \ubca1\ud130 \uc784\ubca0\ub529\uc774 \ub85c\uceec\uc5d0\uc11c \uacc4\uc0b0\ub429\ub2c8\ub2e4",
+            ondevice_outro: "\ucc44\ud305 \ub370\uc774\ud130\ub294 iPhone\uc744 \ub5a0\ub098\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4. \ud074\ub77c\uc6b0\ub4dc API, \uc11c\ubc84 \uce21 \ucc98\ub9ac, \ub370\uc774\ud130 \uc5c5\ub85c\ub4dc\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.",
+            h_storage: "5. \ub370\uc774\ud130 \uc800\uc7a5",
+            storage_intro: "\uac00\uc838\uc628 \ucc44\ud305 \ub370\uc774\ud130\ub294 \uae30\uae30\uc758 \uc571 \uc0cc\ub4dc\ubc15\uc2a4 \ucee8\ud14c\uc774\ub108\uc5d0 \uc800\uc7a5\ub429\ub2c8\ub2e4:",
+            st_encrypted: "iOS \ud30c\uc77c \ub808\ubca8 \uc554\ud638\ud654\ub85c \ubcf4\ud638",
+            st_access: "DeepTalk \uc571\ub9cc \uc811\uadfc \uac00\ub2a5",
+            st_delete_app: "\uc571 \uc0ad\uc81c \uc2dc \uc644\uc804\ud788 \uc0ad\uc81c",
+            st_delete_ind: "\uc571 \ub0b4\uc5d0\uc11c \uac1c\ubcc4 \ubd84\uc11d\uc744 \uc5b8\uc81c\ub4e0 \uc0ad\uc81c \uac00\ub2a5",
+            h_network: "6. \ub124\ud2b8\uc6cc\ud06c \uc0ac\uc6a9",
+            network_intro: "DeepTalk\uc758 \ub124\ud2b8\uc6cc\ud06c \uc811\uadfc\uc740 \ub2e4\uc74c\uc73c\ub85c \uc5c4\uaca9\ud788 \uc81c\ud55c\ub429\ub2c8\ub2e4:",
+            net_td: "TelemetryDeck\uc73c\ub85c \uc775\uba85 \uc0ac\uc6a9 \ubd84\uc11d \uc804\uc1a1",
+            net_fb: "Firebase Crashlytics\ub85c \ud06c\ub798\uc2dc \ub9ac\ud3ec\ud2b8 \uc804\uc1a1",
+            network_outro: "\ucc44\ud305 \ub370\uc774\ud130, \uac1c\uc778 \uc815\ubcf4 \ub610\ub294 \ubd84\uc11d \uacb0\uacfc\ub294 \ub124\ud2b8\uc6cc\ud06c\ub97c \ud1b5\ud574 \uc804\uc1a1\ub418\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.",
+            h_children: "7. \uc544\ub3d9 \uac1c\uc778\uc815\ubcf4 \ubcf4\ud638",
+            children_text: "DeepTalk\uc740 13\uc138 \ubbf8\ub9cc \uc544\ub3d9\uc758 \uac1c\uc778 \ub370\uc774\ud130\ub97c \uc758\ub3c4\uc801\uc73c\ub85c \uc218\uc9d1\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4. \uacc4\uc815 \uc0dd\uc131\uc774 \ud544\uc694 \uc5c6\uc73c\uba70 \uac1c\uc778 \uc2dd\ubcc4\uc790\ub97c \uc218\uc9d1\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.",
+            h_rights: "8. \uadc0\ud558\uc758 \uad8c\ub9ac",
+            rights_intro: "DeepTalk\uc740 \uac1c\uc778 \ub370\uc774\ud130\ub97c \uc218\uc9d1\ud558\uc9c0 \uc54a\uc73c\ubbc0\ub85c:",
+            rights_no_data: "\uc11c\ubc84\uc5d0 \uc811\uadfc, \uc218\uc815 \ub610\ub294 \uc0ad\uc81c\ud560 \uac1c\uc778 \ub370\uc774\ud130\uac00 \uc5c6\uc2b5\ub2c8\ub2e4",
+            rights_uninstall: "\uc571 \uc0ad\uc81c\ub85c \ubaa8\ub4e0 \ub85c\uceec \ub370\uc774\ud130\ub97c \uc0ad\uc81c\ud560 \uc218 \uc788\uc2b5\ub2c8\ub2e4",
+            rights_delete: "\uc571 \ub0b4\uc5d0\uc11c \uac1c\ubcc4 \ubd84\uc11d\uc744 \uc5b8\uc81c\ub4e0 \uc0ad\uc81c\ud560 \uc218 \uc788\uc2b5\ub2c8\ub2e4",
+            h_changes: "9. \ubc29\uce68 \ubcc0\uacbd",
+            changes_text: "\ubcf8 \uac1c\uc778\uc815\ubcf4 \ucc98\ub9ac\ubc29\uce68\uc740 \uc218\uc2dc\ub85c \uc5c5\ub370\uc774\ud2b8\ub420 \uc218 \uc788\uc2b5\ub2c8\ub2e4. \ubcc0\uacbd \uc0ac\ud56d\uc740 \uc774 \ud398\uc774\uc9c0\uc5d0 \uac8c\uc2dc\ub429\ub2c8\ub2e4.",
+            h_contact: "10. \uc5f0\ub77d\ucc98",
+            contact_intro: "\ubcf8 \uac1c\uc778\uc815\ubcf4 \ucc98\ub9ac\ubc29\uce68\uc5d0 \ub300\ud55c \ubb38\uc758\uc0ac\ud56d\uc774 \uc788\uc73c\uc2dc\uba74 \uc5f0\ub77d\ud574 \uc8fc\uc138\uc694:"
+        },
+        ja: {
+            back: "DeepTalk\u306b\u623b\u308b",
+            title: "\u30d7\u30e9\u30a4\u30d0\u30b7\u30fc\u30dd\u30ea\u30b7\u30fc",
+            updated: "\u6700\u7d42\u66f4\u65b0: 2026\u5e743\u6708",
+            overview: "DeepTalk\u306f\u30d7\u30e9\u30a4\u30d0\u30b7\u30fc\u30d5\u30a1\u30fc\u30b9\u30c8\u306e\u30a2\u30d7\u30ea\u3067\u3059\u3002\u3059\u3079\u3066\u306e\u30c1\u30e3\u30c3\u30c8\u5206\u6790\u306f100%\u7aef\u672b\u5185\u3067\u5b9f\u884c\u3055\u308c\u307e\u3059\u3002\u30c1\u30e3\u30c3\u30c8\u30c7\u30fc\u30bf\u3092\u53ce\u96c6\u3001\u4fdd\u5b58\u3001\u307e\u305f\u306f\u5916\u90e8\u30b5\u30fc\u30d0\u30fc\u306b\u9001\u4fe1\u3059\u308b\u3053\u3068\u306f\u3042\u308a\u307e\u305b\u3093\u3002",
+            h_not_collect: "1. \u53ce\u96c6\u3057\u306a\u3044\u30c7\u30fc\u30bf",
+            not_collect_intro: "DeepTalk\u306f\u4ee5\u4e0b\u306e\u30c7\u30fc\u30bf\u3092\u53ce\u96c6\u3057\u307e\u305b\u3093:",
+            nc_chat: "\u30c1\u30e3\u30c3\u30c8\u30e1\u30c3\u30bb\u30fc\u30b8\u3001\u4f1a\u8a71\u5c65\u6b74\u3001\u30e1\u30c3\u30bb\u30fc\u30b8\u5185\u5bb9",
+            nc_contact: "\u9023\u7d61\u5148\u60c5\u5831\u307e\u305f\u306f\u30a2\u30c9\u30ec\u30b9\u5e33\u30c7\u30fc\u30bf",
+            nc_media: "\u5199\u771f\u3001\u30e1\u30c7\u30a3\u30a2\u30d5\u30a1\u30a4\u30eb\u3001\u6dfb\u4ed8\u30d5\u30a1\u30a4\u30eb",
+            nc_location: "\u4f4d\u7f6e\u60c5\u5831\u307e\u305f\u306fGPS\u30c7\u30fc\u30bf",
+            nc_id: "\u500b\u4eba\u8b58\u5225\u5b50\uff08\u540d\u524d\u3001\u30e1\u30fc\u30eb\u3001\u96fb\u8a71\u756a\u53f7\uff09",
+            nc_device: "\u30c7\u30d0\u30a4\u30b9\u8b58\u5225\u5b50\uff08IDFA\u3001IDFV\uff09",
+            nc_browsing: "\u95b2\u89a7\u5c65\u6b74\u307e\u305f\u306f\u691c\u7d22\u30af\u30a8\u30ea",
+            h_collect: "2. \u53ce\u96c6\u3059\u308b\u30c7\u30fc\u30bf",
+            collect_intro: "\u30a2\u30d7\u30ea\u306e\u54c1\u8cea\u5411\u4e0a\u306e\u305f\u3081\u306b\u6700\u5c0f\u9650\u306e\u533f\u540d\u30c7\u30fc\u30bf\u306e\u307f\u53ce\u96c6\u3057\u307e\u3059:",
+            th_type: "\u30c7\u30fc\u30bf\u7a2e\u985e", th_purpose: "\u76ee\u7684", th_linked: "\u30e6\u30fc\u30b6\u30fc\u306b\u7d10\u4ed8\u3051?",
+            td_usage: "\u4f7f\u7528\u72b6\u6cc1\u5206\u6790", td_usage_purpose: "\u30a2\u30d7\u30ea\u6539\u5584",
+            td_crash: "\u30af\u30e9\u30c3\u30b7\u30e5\u30ec\u30dd\u30fc\u30c8", td_crash_purpose: "\u30d0\u30b0\u4fee\u6b63",
+            td_no_anon: "\u3044\u3044\u3048\uff08\u533f\u540d\uff09",
+            h_analytics: "3. \u5206\u6790\u30b5\u30fc\u30d3\u30b9",
+            analytics_td: "TelemetryDeck \u2014 \u533f\u540d\u306e\u4f7f\u7528\u72b6\u6cc1\u5206\u6790\u306bTelemetryDeck\u3092\u4f7f\u7528\u3057\u3066\u3044\u307e\u3059\u3002TelemetryDeck\u306f\u30d7\u30e9\u30a4\u30d0\u30b7\u30fc\u30d5\u30a1\u30fc\u30b9\u30c8\u3067\u3001Cookie\u3084\u500b\u4eba\u30c7\u30fc\u30bf\u3092\u53ce\u96c6\u3057\u307e\u305b\u3093\u3002",
+            analytics_fb: "Firebase Crashlytics \u2014 \u30af\u30e9\u30c3\u30b7\u30e5\u30ec\u30dd\u30fc\u30c8\u306bFirebase Crashlytics\u3092\u4f7f\u7528\u3057\u3066\u3044\u307e\u3059\u3002\u30c7\u30d0\u30a4\u30b9\u30e2\u30c7\u30eb\u3001OS\u30d0\u30fc\u30b8\u30e7\u30f3\u3001\u30af\u30e9\u30c3\u30b7\u30e5\u30b9\u30bf\u30c3\u30af\u30c8\u30ec\u30fc\u30b9\u306e\u307f\u542b\u307e\u308c\u307e\u3059\u3002",
+            h_ondevice: "4. \u30aa\u30f3\u30c7\u30d0\u30a4\u30b9\u51e6\u7406",
+            ondevice_intro: "DeepTalk\u306e\u3059\u3079\u3066\u306e\u5206\u6790\u6a5f\u80fd\u306f\u7aef\u672b\u5185\u3067\u5b9f\u884c\u3055\u308c\u307e\u3059:",
+            od_parsing: "\u30c1\u30e3\u30c3\u30c8\u30d1\u30fc\u30b7\u30f3\u30b0 \u2014 \u30e1\u30c3\u30bb\u30fc\u30b8\u30d5\u30a1\u30a4\u30eb\u306f\u30ed\u30fc\u30ab\u30eb\u3067\u89e3\u6790",
+            od_analytics: "\u5206\u6790 \u2014 10\u7a2e\u306e\u5206\u6790\u30ab\u30fc\u30c9\u304c\u7aef\u672b\u5185\u3067\u8a08\u7b97",
+            od_ai: "AI\u30c1\u30e3\u30c3\u30c8\u30a4\u30f3\u30b5\u30a4\u30c8 \u2014 \u30aa\u30f3\u30c7\u30d0\u30a4\u30b9LLM\u3067\u99c6\u52d5",
+            od_wrapped: "Wrapped \u2014 \u30b5\u30de\u30ea\u30fc\u30ec\u30dd\u30fc\u30c8\u304c\u7aef\u672b\u5185\u3067\u751f\u6210",
+            od_search: "\u30bb\u30de\u30f3\u30c6\u30a3\u30c3\u30af\u691c\u7d22 \u2014 \u30d9\u30af\u30c8\u30eb\u57cb\u3081\u8fbc\u307f\u304c\u30ed\u30fc\u30ab\u30eb\u3067\u8a08\u7b97",
+            ondevice_outro: "\u30c1\u30e3\u30c3\u30c8\u30c7\u30fc\u30bf\u306fiPhone\u3092\u96e2\u308c\u307e\u305b\u3093\u3002\u30af\u30e9\u30a6\u30c9API\u3001\u30b5\u30fc\u30d0\u30fc\u5074\u51e6\u7406\u3001\u30c7\u30fc\u30bf\u30a2\u30c3\u30d7\u30ed\u30fc\u30c9\u306f\u3042\u308a\u307e\u305b\u3093\u3002",
+            h_storage: "5. \u30c7\u30fc\u30bf\u4fdd\u5b58",
+            storage_intro: "\u30a4\u30f3\u30dd\u30fc\u30c8\u3055\u308c\u305f\u30c1\u30e3\u30c3\u30c8\u30c7\u30fc\u30bf\u306f\u7aef\u672b\u306e\u30a2\u30d7\u30ea\u30b5\u30f3\u30c9\u30dc\u30c3\u30af\u30b9\u30b3\u30f3\u30c6\u30ca\u306b\u4fdd\u5b58\u3055\u308c\u307e\u3059:",
+            st_encrypted: "iOS\u30d5\u30a1\u30a4\u30eb\u30ec\u30d9\u30eb\u6697\u53f7\u5316\u3067\u4fdd\u8b77",
+            st_access: "DeepTalk\u30a2\u30d7\u30ea\u306e\u307f\u30a2\u30af\u30bb\u30b9\u53ef\u80fd",
+            st_delete_app: "\u30a2\u30d7\u30ea\u524a\u9664\u6642\u306b\u5b8c\u5168\u306b\u524a\u9664",
+            st_delete_ind: "\u30a2\u30d7\u30ea\u5185\u3067\u500b\u5225\u306e\u5206\u6790\u3092\u3044\u3064\u3067\u3082\u524a\u9664\u53ef\u80fd",
+            h_network: "6. \u30cd\u30c3\u30c8\u30ef\u30fc\u30af\u4f7f\u7528",
+            network_intro: "DeepTalk\u306e\u30cd\u30c3\u30c8\u30ef\u30fc\u30af\u30a2\u30af\u30bb\u30b9\u306f\u4ee5\u4e0b\u306b\u53b3\u5bc6\u306b\u5236\u9650\u3055\u308c\u3066\u3044\u307e\u3059:",
+            net_td: "TelemetryDeck\u3078\u306e\u533f\u540d\u4f7f\u7528\u72b6\u6cc1\u5206\u6790\u306e\u9001\u4fe1",
+            net_fb: "Firebase Crashlytics\u3078\u306e\u30af\u30e9\u30c3\u30b7\u30e5\u30ec\u30dd\u30fc\u30c8\u306e\u9001\u4fe1",
+            network_outro: "\u30c1\u30e3\u30c3\u30c8\u30c7\u30fc\u30bf\u3001\u500b\u4eba\u60c5\u5831\u3001\u5206\u6790\u7d50\u679c\u306f\u30cd\u30c3\u30c8\u30ef\u30fc\u30af\u3092\u901a\u3058\u3066\u9001\u4fe1\u3055\u308c\u307e\u305b\u3093\u3002",
+            h_children: "7. \u5150\u7ae5\u306e\u30d7\u30e9\u30a4\u30d0\u30b7\u30fc",
+            children_text: "DeepTalk\u306f13\u6b73\u672a\u6e80\u306e\u5150\u7ae5\u306e\u500b\u4eba\u30c7\u30fc\u30bf\u3092\u610f\u56f3\u7684\u306b\u53ce\u96c6\u3057\u307e\u305b\u3093\u3002\u30a2\u30ab\u30a6\u30f3\u30c8\u4f5c\u6210\u306f\u4e0d\u8981\u3067\u3001\u500b\u4eba\u8b58\u5225\u5b50\u3092\u53ce\u96c6\u3057\u307e\u305b\u3093\u3002",
+            h_rights: "8. \u304a\u5ba2\u69d8\u306e\u6a29\u5229",
+            rights_intro: "DeepTalk\u306f\u500b\u4eba\u30c7\u30fc\u30bf\u3092\u53ce\u96c6\u3057\u306a\u3044\u305f\u3081:",
+            rights_no_data: "\u30b5\u30fc\u30d0\u30fc\u4e0a\u306b\u30a2\u30af\u30bb\u30b9\u3001\u4fee\u6b63\u3001\u524a\u9664\u3059\u308b\u500b\u4eba\u30c7\u30fc\u30bf\u306f\u3042\u308a\u307e\u305b\u3093",
+            rights_uninstall: "\u30a2\u30d7\u30ea\u306e\u30a2\u30f3\u30a4\u30f3\u30b9\u30c8\u30fc\u30eb\u3067\u3059\u3079\u3066\u306e\u30ed\u30fc\u30ab\u30eb\u30c7\u30fc\u30bf\u3092\u524a\u9664\u3067\u304d\u307e\u3059",
+            rights_delete: "\u30a2\u30d7\u30ea\u5185\u3067\u500b\u5225\u306e\u5206\u6790\u3092\u3044\u3064\u3067\u3082\u524a\u9664\u3067\u304d\u307e\u3059",
+            h_changes: "9. \u30dd\u30ea\u30b7\u30fc\u306e\u5909\u66f4",
+            changes_text: "\u672c\u30d7\u30e9\u30a4\u30d0\u30b7\u30fc\u30dd\u30ea\u30b7\u30fc\u306f\u968f\u6642\u66f4\u65b0\u3055\u308c\u308b\u5834\u5408\u304c\u3042\u308a\u307e\u3059\u3002\u5909\u66f4\u306f\u3053\u306e\u30da\u30fc\u30b8\u306b\u63b2\u8f09\u3055\u308c\u307e\u3059\u3002",
+            h_contact: "10. \u304a\u554f\u3044\u5408\u308f\u305b",
+            contact_intro: "\u672c\u30d7\u30e9\u30a4\u30d0\u30b7\u30fc\u30dd\u30ea\u30b7\u30fc\u306b\u3064\u3044\u3066\u3054\u8cea\u554f\u304c\u3042\u308c\u3070\u3001\u4ee5\u4e0b\u307e\u3067\u3054\u9023\u7d61\u304f\u3060\u3055\u3044:"
+        },
+        es: {
+            back: "Volver a DeepTalk",
+            title: "Pol\u00edtica de Privacidad",
+            updated: "\u00daltima actualizaci\u00f3n: marzo de 2026",
+            overview: "DeepTalk es una app de privacidad. Todo el an\u00e1lisis de chat se realiza 100% en tu dispositivo. No recopilamos, almacenamos ni transmitimos tus datos de chat a ning\u00fan servidor externo.",
+            h_not_collect: "1. Datos que NO Recopilamos",
+            not_collect_intro: "DeepTalk no recopila ninguno de los siguientes datos:",
+            nc_chat: "Mensajes de chat, historial de conversaciones o contenido de mensajes",
+            nc_contact: "Informaci\u00f3n de contactos o datos de la agenda",
+            nc_media: "Fotos, archivos multimedia o adjuntos",
+            nc_location: "Ubicaci\u00f3n o datos GPS",
+            nc_id: "Identificadores personales (nombre, correo, tel\u00e9fono)",
+            nc_device: "Identificadores de dispositivo (IDFA, IDFV)",
+            nc_browsing: "Historial de navegaci\u00f3n o consultas de b\u00fasqueda",
+            h_collect: "2. Datos que Recopilamos",
+            collect_intro: "Recopilamos datos m\u00ednimos y an\u00f3nimos solo para mejorar la calidad de la app:",
+            th_type: "Tipo de Dato", th_purpose: "Prop\u00f3sito", th_linked: "\u00bfVinculado a ti?",
+            td_usage: "An\u00e1lisis de uso", td_usage_purpose: "Mejora de la app",
+            td_crash: "Informes de fallos", td_crash_purpose: "Correcci\u00f3n de errores",
+            td_no_anon: "No (an\u00f3nimo)",
+            h_analytics: "3. Servicios de An\u00e1lisis",
+            analytics_td: "TelemetryDeck \u2014 Usamos TelemetryDeck para an\u00e1lisis de uso an\u00f3nimo. TelemetryDeck prioriza la privacidad y no usa cookies ni recopila datos personales.",
+            analytics_fb: "Firebase Crashlytics \u2014 Usamos Firebase Crashlytics para informes de fallos. Solo incluyen modelo de dispositivo, versi\u00f3n de SO y trazas de error.",
+            h_ondevice: "4. Procesamiento en Dispositivo",
+            ondevice_intro: "Todas las funciones de an\u00e1lisis de DeepTalk se ejecutan en tu dispositivo:",
+            od_parsing: "An\u00e1lisis de chat \u2014 Los archivos se analizan localmente",
+            od_analytics: "An\u00e1lisis \u2014 Las 10 tarjetas se calculan en el dispositivo",
+            od_ai: "IA Chat Insight \u2014 Impulsado por un LLM en el dispositivo",
+            od_wrapped: "Wrapped \u2014 Los informes se generan en el dispositivo",
+            od_search: "B\u00fasqueda sem\u00e1ntica \u2014 Los vectores se calculan localmente",
+            ondevice_outro: "Tus datos de chat nunca salen de tu iPhone. No hay APIs en la nube, procesamiento en servidor ni carga de datos.",
+            h_storage: "5. Almacenamiento de Datos",
+            storage_intro: "Los datos importados se almacenan en el contenedor sandbox de la app:",
+            st_encrypted: "Protegidos por cifrado a nivel de archivo de iOS",
+            st_access: "Accesibles solo por la app DeepTalk",
+            st_delete_app: "Eliminados completamente al desinstalar la app",
+            st_delete_ind: "Puedes eliminar an\u00e1lisis individuales en cualquier momento",
+            h_network: "6. Uso de Red",
+            network_intro: "El acceso a la red de DeepTalk est\u00e1 estrictamente limitado a:",
+            net_td: "Env\u00edo de an\u00e1lisis de uso an\u00f3nimo a TelemetryDeck",
+            net_fb: "Env\u00edo de informes de fallos a Firebase Crashlytics",
+            network_outro: "Ning\u00fan dato de chat, informaci\u00f3n personal o resultado de an\u00e1lisis se transmite por la red.",
+            h_children: "7. Privacidad de Menores",
+            children_text: "DeepTalk no recopila intencionalmente datos de menores de 13 a\u00f1os. La app no requiere creaci\u00f3n de cuenta ni recopila identificadores personales.",
+            h_rights: "8. Tus Derechos",
+            rights_intro: "Como DeepTalk no recopila datos personales:",
+            rights_no_data: "No hay datos personales que acceder, corregir o eliminar en nuestros servidores",
+            rights_uninstall: "Puedes eliminar todos los datos locales desinstalando la app",
+            rights_delete: "Puedes eliminar an\u00e1lisis individuales en cualquier momento",
+            h_changes: "9. Cambios en esta Pol\u00edtica",
+            changes_text: "Podemos actualizar esta Pol\u00edtica de Privacidad peri\u00f3dicamente. Los cambios se publicar\u00e1n en esta p\u00e1gina.",
+            h_contact: "10. Contacto",
+            contact_intro: "Si tienes preguntas sobre esta Pol\u00edtica de Privacidad, cont\u00e1ctanos en:"
+        },
+        pt: {
+            back: "Voltar ao DeepTalk",
+            title: "Pol\u00edtica de Privacidade",
+            updated: "\u00daltima atualiza\u00e7\u00e3o: mar\u00e7o de 2026",
+            overview: "DeepTalk \u00e9 um app de privacidade. Toda an\u00e1lise de chat \u00e9 realizada 100% no seu dispositivo. N\u00e3o coletamos, armazenamos ou transmitimos seus dados de chat para nenhum servidor externo.",
+            h_not_collect: "1. Dados que N\u00c3O Coletamos",
+            not_collect_intro: "DeepTalk n\u00e3o coleta nenhum dos seguintes dados:",
+            nc_chat: "Mensagens de chat, hist\u00f3rico de conversas ou conte\u00fado de mensagens",
+            nc_contact: "Informa\u00e7\u00f5es de contatos ou dados da agenda",
+            nc_media: "Fotos, arquivos de m\u00eddia ou anexos",
+            nc_location: "Localiza\u00e7\u00e3o ou dados GPS",
+            nc_id: "Identificadores pessoais (nome, e-mail, telefone)",
+            nc_device: "Identificadores de dispositivo (IDFA, IDFV)",
+            nc_browsing: "Hist\u00f3rico de navega\u00e7\u00e3o ou consultas de busca",
+            h_collect: "2. Dados que Coletamos",
+            collect_intro: "Coletamos dados m\u00ednimos e an\u00f4nimos apenas para melhorar a qualidade do app:",
+            th_type: "Tipo de Dado", th_purpose: "Finalidade", th_linked: "Vinculado a voc\u00ea?",
+            td_usage: "An\u00e1lise de uso", td_usage_purpose: "Melhoria do app",
+            td_crash: "Relat\u00f3rios de falhas", td_crash_purpose: "Corre\u00e7\u00e3o de bugs",
+            td_no_anon: "N\u00e3o (an\u00f4nimo)",
+            h_analytics: "3. Servi\u00e7os de An\u00e1lise",
+            analytics_td: "TelemetryDeck \u2014 Usamos TelemetryDeck para an\u00e1lise de uso an\u00f4nima. TelemetryDeck prioriza privacidade e n\u00e3o usa cookies nem coleta dados pessoais.",
+            analytics_fb: "Firebase Crashlytics \u2014 Usamos Firebase Crashlytics para relat\u00f3rios de falhas. Incluem apenas modelo do dispositivo, vers\u00e3o do SO e stack traces.",
+            h_ondevice: "4. Processamento no Dispositivo",
+            ondevice_intro: "Todos os recursos de an\u00e1lise do DeepTalk rodam no seu dispositivo:",
+            od_parsing: "An\u00e1lise de chat \u2014 Arquivos s\u00e3o analisados localmente",
+            od_analytics: "An\u00e1lise \u2014 Os 10 cards s\u00e3o calculados no dispositivo",
+            od_ai: "IA Chat Insight \u2014 Alimentado por um LLM no dispositivo",
+            od_wrapped: "Wrapped \u2014 Relat\u00f3rios gerados no dispositivo",
+            od_search: "Busca sem\u00e2ntica \u2014 Vetores calculados localmente",
+            ondevice_outro: "Seus dados de chat nunca saem do seu iPhone. N\u00e3o h\u00e1 APIs na nuvem, processamento no servidor ou upload de dados.",
+            h_storage: "5. Armazenamento de Dados",
+            storage_intro: "Os dados importados s\u00e3o armazenados no container sandbox do app:",
+            st_encrypted: "Protegidos por criptografia a n\u00edvel de arquivo do iOS",
+            st_access: "Acess\u00edveis apenas pelo app DeepTalk",
+            st_delete_app: "Completamente exclu\u00eddos ao desinstalar o app",
+            st_delete_ind: "Voc\u00ea pode excluir an\u00e1lises individuais a qualquer momento",
+            h_network: "6. Uso de Rede",
+            network_intro: "O acesso \u00e0 rede do DeepTalk \u00e9 estritamente limitado a:",
+            net_td: "Envio de an\u00e1lise de uso an\u00f4nima ao TelemetryDeck",
+            net_fb: "Envio de relat\u00f3rios de falhas ao Firebase Crashlytics",
+            network_outro: "Nenhum dado de chat, informa\u00e7\u00e3o pessoal ou resultado de an\u00e1lise \u00e9 transmitido pela rede.",
+            h_children: "7. Privacidade de Menores",
+            children_text: "DeepTalk n\u00e3o coleta intencionalmente dados de menores de 13 anos. O app n\u00e3o requer cria\u00e7\u00e3o de conta nem coleta identificadores pessoais.",
+            h_rights: "8. Seus Direitos",
+            rights_intro: "Como DeepTalk n\u00e3o coleta dados pessoais:",
+            rights_no_data: "N\u00e3o h\u00e1 dados pessoais para acessar, corrigir ou excluir em nossos servidores",
+            rights_uninstall: "Voc\u00ea pode excluir todos os dados locais desinstalando o app",
+            rights_delete: "Voc\u00ea pode excluir an\u00e1lises individuais a qualquer momento",
+            h_changes: "9. Altera\u00e7\u00f5es nesta Pol\u00edtica",
+            changes_text: "Podemos atualizar esta Pol\u00edtica de Privacidade periodicamente. As altera\u00e7\u00f5es ser\u00e3o publicadas nesta p\u00e1gina.",
+            h_contact: "10. Contato",
+            contact_intro: "Se tiver d\u00favidas sobre esta Pol\u00edtica de Privacidade, entre em contato:"
+        }
+    };
+
+    function setLang(lang) {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key]) {
+                el.textContent = translations[lang][key];
+            }
+        });
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`[onclick="setLang('${lang}')"]`).classList.add('active');
+        document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+        localStorage.setItem('deeptalk-lang', lang);
+    }
+
+    (function() {
+        const saved = localStorage.getItem('deeptalk-lang');
+        if (saved && translations[saved]) { setLang(saved); return; }
+        const browserLang = navigator.language.toLowerCase();
+        if (browserLang.startsWith('ko')) setLang('ko');
+        else if (browserLang.startsWith('ja')) setLang('ja');
+        else if (browserLang.startsWith('es')) setLang('es');
+        else if (browserLang.startsWith('pt')) setLang('pt');
+        else setLang('en');
+    })();
+    </script>
 </body>
 </html>
